@@ -3,7 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#858080">
+
+    <TextView
+        android:id="@+id/tvEmpty2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empty"
+        app:layout_constraintBottom_toBottomOf="@+id/rcViewSearch"
+        app:layout_constraintEnd_toEndOf="@+id/rcViewSearch"
+        app:layout_constraintStart_toStartOf="@+id/rcViewSearch"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empty"
+        app:layout_constraintBottom_toBottomOf="@+id/rcViewPaired"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -23,7 +44,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tvPaired"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -31,7 +52,7 @@
                 android:textColor="#3F51B5" />
 
             <ImageButton
-                android:id="@+id/bluetooth_add"
+                android:id="@+id/imBluetoothPaired"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/baseline_bluetooth_24"
@@ -40,7 +61,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rcViewPaired"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -62,7 +83,7 @@
         app:cardCornerRadius="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView">
+        app:layout_constraintTop_toBottomOf="@+id/rcViewPaired">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,15 +93,15 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tvSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:text="Сопряженные устройства"
+                android:text="Поиск устройст"
                 android:textColor="#3F51B5" />
 
             <ImageButton
-                android:id="@+id/bluetooth_connect"
+                android:id="@+id/imBluetoothSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/bluetooth_searching"
@@ -89,10 +110,18 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcViewSearch"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
