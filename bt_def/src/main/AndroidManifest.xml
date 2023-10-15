@@ -13,7 +13,7 @@
             android:name=".BaseActivity"
             android:exported="false"
             android:label="@string/title_activity_base"
-            android:theme="@style/Theme.ProjectINK" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 
 </manifest>
