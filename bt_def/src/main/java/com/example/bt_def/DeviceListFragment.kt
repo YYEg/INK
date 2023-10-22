@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,7 @@ class DeviceListFragment : Fragment(), ItemAdapter.Listener {
     private var bAdapter: BluetoothAdapter? = null
     private lateinit var binding: FragmentListBinding
     private lateinit var btLauncher: ActivityResultLauncher<Intent>
+    private lateinit var pLauncher: ActivityResultLauncher<Array<String>>
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
@@ -53,6 +55,7 @@ class DeviceListFragment : Fragment(), ItemAdapter.Listener {
         binding.imBlueTooth.setOnClickListener{
             requestBluetoothConnectPermission()
         }
+        checkPermissions()
         initRcViews()
         registerBtLauncher()
         initBtAdapter()
@@ -129,6 +132,30 @@ class DeviceListFragment : Fragment(), ItemAdapter.Listener {
             } else{
                 Snackbar.make(binding.root, "Блютуз выключен!", Snackbar.LENGTH_LONG).show()
             }
+        }
+    }
+
+
+    private fun checkPermissions(){
+        if(!checkBtPermissions()){
+            registerPermissionListener()
+            launchBtPermissions()
+        }
+    }
+
+    private fun launchBtPermissions(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
+            pLauncher.launch(arrayOf(
+                Manifest.permission.BLUETOOTH_CONNECT,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ))
+        }
+    }
+    private fun registerPermissionListener(){
+        pLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ){
+
         }
     }
 
