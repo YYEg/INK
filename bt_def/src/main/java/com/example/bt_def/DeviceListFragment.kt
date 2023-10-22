@@ -1,6 +1,9 @@
+package com.example.bt_def
+
 import android.Manifest
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.Intent
@@ -15,8 +18,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.bt_def.ItemAdapter
-import com.example.bt_def.changeButtonColor
 import com.example.bt_def.databinding.FragmentListBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -49,14 +50,36 @@ class DeviceListFragment : Fragment() {
         binding.imBlueTooth.setOnClickListener{
             requestBluetoothConnectPermission()
         }
+        initRcViews()
         registerBtLauncher()
         initBtAdapter()
+        bluetoothState()
     }
 
     private fun initRcViews() = with(binding){
         rcViewPaired.layoutManager = LinearLayoutManager(requireContext())
         itemAdapter = ItemAdapter()
-        rcViewPaired
+        rcViewPaired.adapter = itemAdapter
+    }
+
+    private fun getPairedDevices(){
+        try{
+            val list = ArrayList<ListItem>()
+            val deviceList = bAdapter?.bondedDevices as Set<BluetoothDevice>
+            deviceList.forEach{
+                list.add(
+                    ListItem(
+                        it.name,
+                        it.address
+                    )
+                )
+            }
+            binding.tvEmpty.visibility = if(list.isEmpty()) View.VISIBLE else View.GONE
+            itemAdapter.submitList(list)
+        } catch (e: SecurityException){
+
+        }
+
     }
 
     private fun requestBluetoothConnectPermission() {
@@ -84,12 +107,20 @@ class DeviceListFragment : Fragment() {
         bAdapter = bManager.adapter
     }
 
+    private fun bluetoothState(){
+        if(bAdapter?.isEnabled == true){
+            changeButtonColor(binding.imBlueTooth, android.graphics.Color.GREEN)
+            getPairedDevices()
+        }
+    }
+
     private fun registerBtLauncher(){
         btLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ){
             if(it.resultCode == Activity.RESULT_OK){
                 changeButtonColor(binding.imBlueTooth, android.graphics.Color.GREEN)
+                getPairedDevices()
                 Snackbar.make(binding.root, "Блютуз включен!", Snackbar.LENGTH_LONG).show()
             } else{
                 Snackbar.make(binding.root, "Блютуз выключен!", Snackbar.LENGTH_LONG).show()
