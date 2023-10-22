@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,8 +22,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bt_def.databinding.FragmentListBinding
 import com.google.android.material.snackbar.Snackbar
 
-class DeviceListFragment : Fragment() {
+class DeviceListFragment : Fragment(), ItemAdapter.Listener {
 
+    private  var preferences: SharedPreferences? = null
     private lateinit var itemAdapter: ItemAdapter
     private var bAdapter: BluetoothAdapter? = null
     private lateinit var binding: FragmentListBinding
@@ -47,6 +49,7 @@ class DeviceListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        preferences = activity?.getSharedPreferences(BluetoothConstans.PREFERENCES, Context.MODE_PRIVATE)
         binding.imBlueTooth.setOnClickListener{
             requestBluetoothConnectPermission()
         }
@@ -58,7 +61,7 @@ class DeviceListFragment : Fragment() {
 
     private fun initRcViews() = with(binding){
         rcViewPaired.layoutManager = LinearLayoutManager(requireContext())
-        itemAdapter = ItemAdapter()
+        itemAdapter = ItemAdapter(this@DeviceListFragment)
         rcViewPaired.adapter = itemAdapter
     }
 
@@ -70,7 +73,8 @@ class DeviceListFragment : Fragment() {
                 list.add(
                     ListItem(
                         it.name,
-                        it.address
+                        it.address,
+                        preferences?.getString(BluetoothConstans.MAC, "") == it.address
                     )
                 )
             }
@@ -127,5 +131,14 @@ class DeviceListFragment : Fragment() {
             }
         }
     }
-    // Добавьте функцию для изменения цвета кнопки, которая будет вызываться здесь.
+
+    private fun saveMac(mac: String){
+        val editor = preferences?.edit()
+        editor?.putString(BluetoothConstans.MAC, mac)
+        editor?.apply()
+    }
+
+    override fun onClick(device: ListItem) {
+        saveMac(device.mac)
+    }
 }
