@@ -1,5 +1,6 @@
 package com.example.bt_def
 
+import DeviceListFragment
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +12,8 @@ class BaseActivity: AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
         //initRcView()
-        supportFragmentManager.beginTransaction().replace(R.id.placeHolder, DeviceListFragment()).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.placeHolder, DeviceListFragment()).commit()
     }
 
     private fun initRcView(){
