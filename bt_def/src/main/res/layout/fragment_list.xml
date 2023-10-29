@@ -102,12 +102,20 @@
                 android:text="Поиск устройст"
                 android:textColor="#3F51B5" />
 
+            <ProgressBar
+                android:id="@+id/pbSearch"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:visibility="gone" />
+
             <ImageButton
                 android:id="@+id/imBluetoothSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/bluetooth_searching"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
