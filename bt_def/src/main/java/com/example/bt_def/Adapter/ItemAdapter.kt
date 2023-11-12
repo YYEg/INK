@@ -1,4 +1,4 @@
-package com.example.bt_def
+package com.example.bt_def.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,14 +7,16 @@ import android.widget.CheckBox
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bt_def.Items.ListItem
+import com.example.bt_def.R
 import com.example.bt_def.databinding.ListItemBinding
 
 class ItemAdapter(private  val listener: Listener, val adapterType: Boolean) :
     ListAdapter<ListItem, ItemAdapter.MyHolder>(Comparator()) {
     private var oldCheckBox: CheckBox? = null
     class MyHolder(view: View, private val adapter: ItemAdapter,
-        private val listener: Listener,
-        val adapterType: Boolean
+                   private val listener: Listener,
+                   val adapterType: Boolean
     ) : RecyclerView.ViewHolder(view) {
         private val b = ListItemBinding.bind(view)
         private var item1: ListItem? = null

@@ -3,7 +3,7 @@
 
     <style name="Theme.ProjectINK" parent="android:Theme.Material.Light">
         <item name="android:windowFullscreen"/>
-
-        
     </style>
+    <style name="Theme.AppCompat.NoActionBar" parent="android:Theme.Material.Light.NoActionBar" />
+
 </resources>

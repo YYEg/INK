@@ -1,4 +1,4 @@
-package com.example.bt_def
+package com.example.bt_def.Fragments
 
 import android.Manifest
 import android.app.Activity
@@ -23,6 +23,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bt_def.Adapter.ItemAdapter
+import com.example.bt_def.Constants.BluetoothConstans
+import com.example.bt_def.Items.ListItem
+import com.example.bt_def.changeButtonColor
+import com.example.bt_def.checkBtPermissions
 import com.example.bt_def.databinding.FragmentListBinding
 import com.google.android.material.snackbar.Snackbar
 

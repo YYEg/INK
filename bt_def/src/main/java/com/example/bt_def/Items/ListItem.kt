@@ -1,4 +1,4 @@
-package com.example.bt_def
+package com.example.bt_def.Items
 
 import android.bluetooth.BluetoothDevice
 
