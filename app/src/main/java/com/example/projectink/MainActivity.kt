@@ -1,7 +1,8 @@
 package com.example.projectink
 
 import Fragments.ConnectionFragment
-import Fragments.HomeFragment
+import Fragments.GroupFragment
+import Fragments.MapFragment
 import Fragments.MessageFragment
 import Fragments.SettingsFragment
 import android.os.Bundle
@@ -17,14 +18,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(HomeFragment())
+        replaceFragment(MessageFragment())
 
         binding.bottomNavView.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.navHome -> replaceFragment(HomeFragment())
-                R.id.navNotification -> replaceFragment(MessageFragment())
-                R.id.navProfile -> replaceFragment(ConnectionFragment())
-                R.id.navSearch -> replaceFragment(SettingsFragment())
+                R.id.navMessage -> replaceFragment(MessageFragment())
+                R.id.navGroup -> replaceFragment(GroupFragment())
+                R.id.navMap -> replaceFragment(MapFragment())
+                R.id.navConnection -> replaceFragment(ConnectionFragment())
+                R.id.navSettings -> replaceFragment(SettingsFragment())
 
                 else -> {
 

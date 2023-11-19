@@ -30,7 +30,6 @@
         android:id="@+id/bottomNavView"
         android:layout_width="match_parent"
         app:menu="@menu/bottom_nav_menu"
-        app:itemPaddingBottom="10dp"
         android:layout_height="60dp"/>
 
 </LinearLayout>
