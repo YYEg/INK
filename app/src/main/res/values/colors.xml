@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="Main_Bg_Day">#F4ECD5</color>
+    <color name="nav_color">#594E32</color>
 </resources>
