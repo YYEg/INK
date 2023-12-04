@@ -27,4 +27,14 @@ class ConnectThread(private val device: BluetoothDevice) : Thread() {
 
         }
     }
+
+    fun closeConnection(){
+        try{
+            mSocket?.close()
+        } catch (e: IOException){
+
+        } catch (se: SecurityException){
+
+        }
+    }
 }
