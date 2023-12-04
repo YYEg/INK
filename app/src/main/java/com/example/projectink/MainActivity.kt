@@ -35,8 +35,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
-        //startActivity(Intent(this, BaseActivity::class.java))
     }
 
     private fun replaceFragment(fragment: Fragment) {
