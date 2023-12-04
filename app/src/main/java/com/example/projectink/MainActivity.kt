@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragment(MessageFragment())
 
+
         binding.bottomNavView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.navMessage -> replaceFragment(MessageFragment())
