@@ -192,6 +192,7 @@ class DeviceListFragment : Fragment(), ItemAdapter.Listener {
 
     override fun onClick(item: ListItem) {
         saveMac(item.device.address)
+        Log.d("MyLog", item.device.address)
     }
 
     private val bReceiver = object: BroadcastReceiver() {
