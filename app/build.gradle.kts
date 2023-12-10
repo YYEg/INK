@@ -53,6 +53,18 @@ android {
 
 dependencies {
 
+    //MapsForge dep
+    implementation("org.mapsforge:mapsforge-core:0.20.0")
+    implementation("org.mapsforge:mapsforge-map:0.20.0")
+    implementation("org.mapsforge:mapsforge-map-reader:0.20.0")
+    implementation("org.mapsforge:mapsforge-themes:0.20.0")
+    implementation("org.mapsforge:mapsforge-map-android:0.20.0")
+    implementation("com.caverock:androidsvg:1.4")
+
+    implementation("org.mapsforge:mapsforge-core:0.20.0")
+    implementation("org.mapsforge:mapsforge-poi:0.20.0")
+    implementation("org.mapsforge:mapsforge-poi-android:0.20.0")
+
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.0")
@@ -75,4 +87,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+
+
 }
